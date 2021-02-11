@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Thomas Pham</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<style>
+#map {
+    position: fixed;
+    width:65%;
+}
+#features {
+    width: 35%;
+    margin-left: 65%;
+    font-family: Tw Cen MT;
+    overflow-y: scroll;
+    background-color: #fafafa;
+}
+section {
+    padding:  25px 50px;
+    line-height: 25px;
+    border-bottom: 1px solid #ddd;
+    opacity: 0.25;
+    font-size: 20px;
+}
+section.active {
+    opacity: 1;
+}
+section:last-child {
+    border-bottom: none;
+    margin-bottom: 1000px;
+}
+</style>
+
+<div id='map'></div>
+<div id='features'>
+    <section id='welcome' class='active'>
+        <h1>Thomas Pham</h1>
+        <p>Hi, and welcome to my fly through resume. Strap in and take a ride through my educational and work experience</p>
+    </section>
+    <section id='section1' class='active'>
+        <h3>Mountain View High School</h3>
+        <i>Student</i>
+        <p>In 2009, I graduated from Mountain View High School in Vancouver, WA where I grew up.</p>
+    </section>
+    <section id='section2'>
+        <h3>University of Washington</h3>
+        <i>Student</i>
+        <p>In 2013, I graduated from University of Washington. This is where I discovered my passion for biological sciences and the environment as a whole.<br><br>During this time I worked as an intern for the Coastal Observation and Seabird Survey Team, managing beached bird survey data from volunteers across the west coast as well as analysing a subset of historical data to use beached bird composition as a proxy for species diversity.</p>
+    </section>
+    <section id='section3'>
+        <h3>LKE Corporation</h3>
+        <i>Avian Technician</i>
+        <p>In 2014, I landed my first job out of college as an avian technician. I worked on an island (East Sand) at the mouth of the Columbia River monitoring Caspian terns, collecting data on nesting location and behavior throughout the field season.</p>
+    </section>
+    <section id='section4'>
+        <h3>Oregon Department of Fisheries and Wildlife</h3>
+        <i>Fish Health Technician</i>
+        <p>Later in 2014, I switched to #teamfish and worked in the Fish Pathology Lab for Oregon Department of Fish and Wildlife. Through this job I assisted with disease monitoring of hatchery salmonids throughout the state.</p>
+        </p>
+    </section>
+    <section id='section5'>
+        <h3>Bird Research Northwest</h3>
+        <i>Seabird Technician</i>
+        <p>In 2015, I went back to East Sand Island once again but this time for Bird Research Northwest - a cooperative research group between Oregon State University and Real Time Research an environmental consulting company. This time around I had significantly greater duties monitoring the nesting colony. Along with the field crew, I collected data on banded birds, nest colony counts, active nest counts, and depredation rates.</p>
+    </section>
+    <section id='section6'>
+        <h3>TechSea International</h3>
+        <i>Fisheries Observer</i>
+        <p>Later in 2015, I took a once in a lifetime opportunity to move to Hawaii where I worked two years as a fisheries observer. There I worked on commercial fishing boats targeting tuna and swordfish, and collected data on species composition, lengths, sex, biological sampling, and protected species interactions for NOAA Fisheries.</p>
+        <p>Work on these fishing cruises varied tremendously, ranging from 12 days to 35 days. Life was difficult at times, so far away from civilization but I enjoyed my time in Hawaii greatly.</p>
+    </section>
+    <section id='section7'>
+        <h3>Portland Community College</h3>
+        <p>In 2017, I decided to go back to school and further develop my professional skills by pursuing a GIS certificate. During this time I gained
+		skills in GIS analysis, UAV operations, cartography, and GPS. </p>
+    </section>
+    <section id ='section8'>
+        <h3>Portland Parks and Recreation Urban Forestry</h3>
+        <i>GIS and Research Intern</i>
+        <p>In 2018 I took the opportunity to intern with the Portland Parks and Recration to work on a project analyzing tree planting equity for
+		the City of Portland. This project invovled wrangling planted tree data from the city and its partners over the past 30 years, geocoding 
+		tens of thousands of planted tree records, and producing maps with a focus on answering the question of whether or not low income and 
+		low canopy neighborhoods are received equal tree plantings and resources.</p>
+    </section>
+    <section id ='section9'>
+        <h3>National Parks Service (Mosaics in Science)</h3>
+        <i>Assistant Avian Biologist</i>
+        <p>In 2018 after I graduated from the GIS program I moved all the way to south Florida to work for the National Parks Service through the 
+		Mosaics in Science Program. There I worked with the South Florida and Carribean Monitoring Network and played an active role in utlizing 
+		low level aerial photography to determine the number of active nests of of several species of colonial nesting birds within Biscayne 
+		National Park as well as geospatially linking it in GIS.<br></br>
+        The second part of my internship was a pilot study with the USGS in order to investigate the efficacy of using drones to collect 
+		imagery as a replacement to helicopters. I developed a Story Map to present my work which can be viewed <a href="https://arcg.is/1jPDa4">here</a>.
+          </p>
+    </section>
+	<section id ='section10'>
+        <h3>University of California Santa Cruz / NOAA</h3>
+        <i>Research Associate</i>
+        <p>Following the path of natural resources, in 2019 I went on to join the University of California Santa to work as a research associate
+		with NOAA Fisheries at the Southwest Fisheries Science Center as a team investigating movement and survival of threatened and endangered
+		salmon. I assist with acoustic tagging efforts of juvenile salmon which are released into the river and tracked along their outmigration path
+		to the ocean via receivers that we set and manage in the Sacramento River. I have been developing a Shiny App to display our project data
+		which can be seen <a href="https://thtupham.shinyapps.io/CentralValley/">here</a>.</p>
+    </section>
+</div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoidGh0dXBoYW0iLCJhIjoiY2s2Zm9lbXkxMGI1bDNlbXQwZHcyM3d3OCJ9.Q6VV2w-cZOjs0FxtfWCkNA';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/outdoors-v10',
+        bearing: -0,
+        center: [-108.866174, 49.272291],
+        zoom: 2,
+        speed: 0.8,
+        pitch: 0
+});
+var chapters = {
+    'welcome': {
+        bearing: -0,
+        center: [-108.866174, 49.272291],
+        zoom: 2,
+        speed: 0.8,
+        pitch: 0
+    },
+    'section1': {
+        bearing: 0,
+        center: [-122.518,45.612],
+        zoom: 15.5,
+        pitch: 0
+    },
+    'section2': {
+        center: [-122.303,47.655],
+        bearing: 54.40,
+        zoom: 14.2,
+        speed: 0.6,
+        pitch: 44.50
+    },
+    'section3': {
+        bearing: 12.80,
+        center: [-123.977,46.264],
+        zoom: 12.6,
+        speed: 0.6,
+        pitch: 0.00
+    },
+    'section4': {
+        bearing: 60,
+        center: [-123.283,44.566],
+        zoom: 17.4,
+        speed: 0.6,
+        pitch: 45
+    },
+    'section5': {
+        bearing: 12.6,
+        center: [-123.977,46.264],
+        zoom: 14.2,
+        pitch: 40.50,
+        speed: 0.6
+    },
+    'section6': {
+        bearing: 0,
+        center: [-157.959,21.367],
+        zoom: 17.3,
+        pitch: 0,
+        speed: 0.6
+    },
+    'section7': {
+        bearing: -0,
+        center: [-122.731,45.438],
+        zoom: 15.1,
+        speed: 0.8,
+        pitch: 0
+    },
+    'section8': {
+        bearing: -0,
+        center: [-122.680,45.601],
+        zoom: 16,
+        speed: 0.8,
+        pitch: 0
+    },
+    'section9': {
+        bearing: -0,
+        center: [-80.195,25.567],
+        zoom: 9.6,
+        speed: 0.8,
+        pitch: 0
+    },
+	    'section10': {
+        bearing: -0,
+        center: [-122.065,36.952],
+        zoom: 16.3,
+        speed: 0.8,
+        pitch: 0
+    }
+};
+// On every scroll event, check which element is on screen
+window.onscroll = function() {
+    var chapterNames = Object.keys(chapters);
+    for (var i = 0; i < chapterNames.length; i++) {
+        var chapterName = chapterNames[i];
+        if (isElementOnScreen(chapterName)) {
+            setActiveChapter(chapterName);
+            break;
+        }
+    }
+};
+var activeChapterName = 'baker';
+function setActiveChapter(chapterName) {
+    if (chapterName === activeChapterName) return;
+    map.flyTo(chapters[chapterName]);
+    document.getElementById(chapterName).setAttribute('class', 'active');
+    document.getElementById(activeChapterName).setAttribute('class', '');
+    activeChapterName = chapterName;
+}
+function isElementOnScreen(id) {
+    var element = document.getElementById(id);
+    var bounds = element.getBoundingClientRect();
+    return bounds.top < window.innerHeight && bounds.bottom > 0;
+}
+</script>
+</body>
+</html>
